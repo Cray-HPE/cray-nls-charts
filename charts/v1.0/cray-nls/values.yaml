@@ -137,9 +137,20 @@ argo-workflows:
   workflow:
     workflowNamespaces:
       - argo
+  executor:
+    image:
+      # -- Registry to use for the controller
+      registry: artifactory.algol60.net/csm-docker/stable/
+      # -- Registry to use for the controller
+      repository: quay.io/argoproj/argoexec
+      tag: v3.3.6
   server:
     replicas: 3
     image:
+      # -- Registry to use for the controller
+      registry: artifactory.algol60.net/csm-docker/stable/
+      # -- Registry to use for the controller
+      repository: quay.io/argoproj/argocli
       tag: v3.3.6
     pdb:
       enabled: true
@@ -150,9 +161,9 @@ argo-workflows:
   controller:
     image:
       # -- Registry to use for the controller
-      registry: quay.io
+      registry: artifactory.algol60.net/csm-docker/stable/
       # -- Registry to use for the controller
-      repository: argoproj/workflow-controller
+      repository: quay.io/argoproj/workflow-controller
       # -- Overrides the image tag whose default is the chart appVersion.
       tag: v3.3.6
     replicas: 2
