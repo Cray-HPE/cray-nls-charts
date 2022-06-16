@@ -39,7 +39,7 @@ dependencies:
     repository: https://artifactory.algol60.net/artifactory/csm-helm-charts
     alias: cray-service
   # TODO: point to Alex argo workflow repo
-  # When his PR is merged  
+  # When his PR is merged
   - name: argo-workflows
     version: "0.16.2"
     repository: https://argoproj.github.io/argo-helm
