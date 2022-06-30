@@ -50,6 +50,10 @@ cray-service:
     enabled: false
     tls:
       enabled: false
+  ingress:
+    gateways:
+      - "services/services-gateway"
+      - "services/customer-admin-gateway"
   initContainers:
     wait-for-argo-server:
       name: "wait-for-argo-server"
