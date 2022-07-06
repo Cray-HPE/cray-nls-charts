@@ -163,6 +163,16 @@ argo-workflows:
       repository: quay.io/argoproj/argoexec
       tag: v3.3.6
   server:
+    affinity:
+      podAntiAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+                - key: app.kubernetes.io/name
+                  operator: In
+                  values:
+                    - argo-workflows-server
+            topologyKey: kubernetes.io/hostname
     replicas: 3
     image:
       # -- Registry to use for the controller
