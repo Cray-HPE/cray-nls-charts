@@ -67,7 +67,7 @@ cray-service:
       name: "cray-nls"
       image:
         repository: artifactory.algol60.net/csm-docker/stable/cray-nls
-        tag: 0.0.9
+        tag: 0.0.10
       resources:
         limits:
           cpu: 1
@@ -139,6 +139,19 @@ cray-service-pg-only:
 
 # argo workflow
 argo-workflows:
+  artifactRepository:
+    archiveLogs: true
+    s3:
+      bucket: config-data
+      keyFormat: "{{workflow.namespace}}/{{workflow.name}}/{{pod.name}}"
+      endpoint: rgw-vip.nmn:8080
+      insecure: true
+      accessKeySecret:
+        name: config-data-s3-credentials
+        key: access_key
+      secretKeySecret:
+        name: config-data-s3-credentials
+        key: secret_key
   workflow:
     workflowNamespaces:
       - argo
