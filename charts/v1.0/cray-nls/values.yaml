@@ -32,6 +32,10 @@ cray-service:
   fullnameOverride: "cray-nls"
   priorityClassName: csm-high-priority-service
   replicaCount: 3
+  volumes:
+    - name: worker-rebuild-workflow-files
+      configMap:
+        name: worker-rebuild-workflow-files
   affinity:
     podAntiAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
@@ -64,10 +68,14 @@ cray-service:
 
   containers:
     cray-nls:
+      volumeMounts:
+        - name: worker-rebuild-workflow-files
+          readOnly: true
+          mountPath: /workflows/worker/ncn
       name: "cray-nls"
       image:
         repository: artifactory.algol60.net/csm-docker/stable/cray-nls
-        tag: 0.0.10
+        tag: 0.0.11
       resources:
         limits:
           cpu: 1
@@ -89,6 +97,8 @@ cray-service:
           value: release
         - name: ARGO_SERVER_URL
           value: argo-server-internal.argo.svc.cluster.local:2746
+        - name: WORKER_REBUILD_WORKFLOW_FILES
+          value: "/workflows/worker"
       ports:
         - name: http
           containerPort: 3000
