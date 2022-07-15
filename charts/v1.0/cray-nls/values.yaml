@@ -75,7 +75,7 @@ cray-service:
       name: "cray-nls"
       image:
         repository: artifactory.algol60.net/csm-docker/stable/cray-nls
-        tag: 0.0.11
+        tag: 0.0.12
       resources:
         limits:
           cpu: 1
@@ -149,6 +149,8 @@ cray-service-pg-only:
 
 # argo workflow
 argo-workflows:
+  useDefaultArtifactRepo: true
+  useStaticCredentials: true
   artifactRepository:
     archiveLogs: true
     s3:
