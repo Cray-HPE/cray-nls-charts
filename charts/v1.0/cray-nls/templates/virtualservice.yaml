@@ -31,6 +31,7 @@ metadata:
 spec:
   gateways:
   - services/services-gateway
+  - services/customer-admin-gateway
   hosts:
   - argo.{{ .Values.externalHostname }}
   http:
