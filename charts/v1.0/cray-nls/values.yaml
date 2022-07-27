@@ -75,7 +75,7 @@ cray-service:
       name: "cray-nls"
       image:
         repository: artifactory.algol60.net/csm-docker/stable/cray-nls
-        tag: 0.0.14
+        tag: 0.0.15
       resources:
         limits:
           cpu: 1
@@ -98,6 +98,8 @@ cray-service:
         - name: ARGO_SERVER_URL
           value: argo-server-internal.argo.svc.cluster.local:2746
         - name: WORKER_REBUILD_WORKFLOW_FILES
+          value: "/workflows/worker"
+        - name: STORAGE_REBUILD_WORKFLOW_FILES
           value: "/workflows/worker"
       ports:
         - name: http
