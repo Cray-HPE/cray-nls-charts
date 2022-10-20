@@ -24,18 +24,18 @@
 
 apiVersion: v2
 name: "cray-nls"
-version: 1.4.1
+version: 1.2.7
 description: "Kubernetes resources for cray-nls"
 home: "https://github.com/Cray-HPE/cray-nls-charts"
 sources:
   - "https://github.com/Cray-HPE/cray-nls"
 dependencies:
   - name: cray-service
-    version: ~8.2.0
+    version: "8.1.5"
     repository: https://artifactory.algol60.net/artifactory/csm-helm-charts
     alias: cray-service-pg-only
   - name: cray-service
-    version: ~8.2.0
+    version: "8.1.5"
     repository: https://artifactory.algol60.net/artifactory/csm-helm-charts
     alias: cray-service
   - name: argo-workflows
