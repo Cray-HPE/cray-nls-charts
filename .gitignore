@@ -1,0 +1,15 @@
+.env
+server.log
+clean-gin
+__debug_bin
+tmp
+gin-bin
+coverage.txt
+.vscode
+charts/v1.0
+charts/v2.0/cray-nls/charts
+charts/v2.0/cray-nls/Chart.lock
+charts/v2.0/cray-iuf/charts/metacontroller-helm-v4.4.0.tgz
+charts/v2.0/cray-iuf/Chart.lock
+charts/v2.0/cray-nls/tmpcharts
+vendor
