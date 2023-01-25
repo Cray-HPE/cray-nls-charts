@@ -1,7 +1,7 @@
 #
 # MIT License
 #
-# (C) Copyright [2022] Hewlett Packard Enterprise Development LP
+# (C) Copyright [2022-2023] Hewlett Packard Enterprise Development LP
 #
 # Permission is hereby granted, free of charge, to any person obtaining a
 # copy of this software and associated documentation files (the "Software"),
@@ -52,7 +52,7 @@ cray-service:
         name: iuf-install-workflow-stages-files
     - name: iuf
       hostPath:
-        path: /etc/iuf
+        path: /opt/cray/iuf
   tolerations:
     - key: "node-role.kubernetes.io/master"
       operator: "Exists"
@@ -61,19 +61,9 @@ cray-service:
     nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
         nodeSelectorTerms:
-        - matchExpressions:
-          - key: kubernetes.io/hostname
-            operator: In
-            values:
-            - ncn-m001
-      preferredDuringSchedulingIgnoredDuringExecution:
-        - weight: 100
-          preference:
-            matchExpressions:
-              - key: kubernetes.io/hostname
-                operator: In
-                values:
-                  - ncn-m001
+          - matchExpressions:
+              - key: node-role.kubernetes.io/master
+                operator: Exists
   strategy:
     rollingUpdate:
       maxUnavailable: 50%
@@ -110,11 +100,11 @@ cray-service:
           readOnly: true
           mountPath: /workflows/iuf/stages
         - name: iuf
-          mountPath: /etc/iuf
+          mountPath: /opt/cray/iuf
       name: "cray-nls"
       image:
         repository: artifactory.algol60.net/csm-docker/stable/cray-nls
-        tag: 0.7.2
+        tag: 0.9.13
       resources:
         limits:
           cpu: 1
@@ -136,12 +126,16 @@ cray-service:
           value: release
         - name: ARGO_SERVER_URL
           value: argo-server-internal.argo.svc.cluster.local:2746
+        - name: API_GATEWAY_URL
+          value: https://api-gw-service-nmn.local
         - name: WORKER_REBUILD_WORKFLOW_FILES
           value: "/workflows/worker"
         - name: STORAGE_REBUILD_WORKFLOW_FILES
           value: "/workflows/storage"
         - name: IUF_INSTALL_WORKFLOW_FILES
           value: "/workflows/iuf"
+        - name: MEDIA_DIR_BASE
+          value: "/opt/cray/iuf"
       ports:
         - name: http
           containerPort: 3000

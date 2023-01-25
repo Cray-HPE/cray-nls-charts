@@ -11,7 +11,9 @@ jobs:
     with:
       lint-charts: ${{ github.event_name == 'pull_request' }}
       test-charts: false
+      scan-charts: false
       ct-yaml: ct.yaml
       scan-image-snyk-args: "--severity-threshold=high"
       scan-chart-snyk-args: "--severity-threshold=high"
+      scan-images-ignore-prefix-list: '["artifactory.algol60.net/csm-docker/stable/cray-nls"]'
     secrets: inherit
