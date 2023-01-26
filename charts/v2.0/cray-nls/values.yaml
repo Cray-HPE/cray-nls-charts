@@ -1,7 +1,7 @@
 #
 # MIT License
 #
-# (C) Copyright [2022] Hewlett Packard Enterprise Development LP
+# (C) Copyright [2022-2023] Hewlett Packard Enterprise Development LP
 #
 # Permission is hereby granted, free of charge, to any person obtaining a
 # copy of this software and associated documentation files (the "Software"),
@@ -24,6 +24,11 @@
 global:
   appVersion: 0.0.1
 
+argo-host: cray-nls.argo.svc:80
+
+ingress:
+  enabled: true
+
 externalHostname: argo.local
 
 cray-service:
@@ -39,16 +44,26 @@ cray-service:
     - name: storage-rebuild-workflow-files
       configMap:
         name: storage-rebuild-workflow-files
+    - name: iuf-install-workflow-files
+      configMap:
+        name: iuf-install-workflow-files
+    - name: iuf-install-workflow-stages-files
+      configMap:
+        name: iuf-install-workflow-stages-files
+    - name: iuf
+      hostPath:
+        path: /opt/cray/iuf
+  tolerations:
+    - key: "node-role.kubernetes.io/master"
+      operator: "Exists"
+      effect: "NoSchedule"
   affinity:
-    podAntiAffinity:
+    nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
-        - topologyKey: kubernetes.io/hostname
-          labelSelector:
-            matchExpressions:
-              - key: app.kubernetes.io/name
-                operator: In
-                values:
-                  - cray-nls
+        nodeSelectorTerms:
+          - matchExpressions:
+              - key: node-role.kubernetes.io/master
+                operator: Exists
   strategy:
     rollingUpdate:
       maxUnavailable: 50%
@@ -78,10 +93,18 @@ cray-service:
         - name: storage-rebuild-workflow-files
           readOnly: true
           mountPath: /workflows/storage/ncn
+        - name: iuf-install-workflow-files
+          readOnly: true
+          mountPath: /workflows/iuf
+        - name: iuf-install-workflow-stages-files
+          readOnly: true
+          mountPath: /workflows/iuf/stages
+        - name: iuf
+          mountPath: /opt/cray/iuf
       name: "cray-nls"
       image:
         repository: artifactory.algol60.net/csm-docker/stable/cray-nls
-        tag: 0.0.17
+        tag: 0.9.14
       resources:
         limits:
           cpu: 1
@@ -103,10 +126,16 @@ cray-service:
           value: release
         - name: ARGO_SERVER_URL
           value: argo-server-internal.argo.svc.cluster.local:2746
+        - name: API_GATEWAY_URL
+          value: https://api-gw-service-nmn.local
         - name: WORKER_REBUILD_WORKFLOW_FILES
           value: "/workflows/worker"
         - name: STORAGE_REBUILD_WORKFLOW_FILES
           value: "/workflows/storage"
+        - name: IUF_INSTALL_WORKFLOW_FILES
+          value: "/workflows/iuf"
+        - name: MEDIA_DIR_BASE
+          value: "/opt/cray/iuf"
       ports:
         - name: http
           containerPort: 3000

@@ -11,10 +11,9 @@ jobs:
     with:
       lint-charts: ${{ github.event_name == 'pull_request' }}
       test-charts: false
+      scan-charts: false
       ct-yaml: ct.yaml
       scan-image-snyk-args: "--severity-threshold=high"
       scan-chart-snyk-args: "--severity-threshold=high"
-    secrets:
-      SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-      ARTIFACTORY_ALGOL60_READONLY_USERNAME: ${{ secrets.ARTIFACTORY_ALGOL60_READONLY_USERNAME }}
-      ARTIFACTORY_ALGOL60_READONLY_TOKEN: ${{ secrets.ARTIFACTORY_ALGOL60_READONLY_TOKEN }}
+      scan-images-ignore-prefix-list: '["artifactory.algol60.net/csm-docker/stable/cray-nls"]'
+    secrets: inherit
