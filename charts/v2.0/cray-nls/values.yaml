@@ -193,7 +193,7 @@ argo-workflows:
     s3:
       bucket: config-data
       keyFormat: "{{workflow.namespace}}/{{workflow.name}}/{{pod.name}}"
-      endpoint: rgw-vip.nmn:8080
+      endpoint: rgw-vip.local
       insecure: true
       accessKeySecret:
         name: config-data-s3-credentials
