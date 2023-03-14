@@ -161,28 +161,20 @@ cray-service:
     prefix: /apis/nls
     uri: /apis/nls
 
-cray-service-pg-only:
-  type: ""
-  nameOverride: "cray-nls"
-  service:
-    enabled: false
-  etcdCluster:
-    enabled: false
-    tls:
-      enabled: false
+# postgres
+cray-postgresql:
+  nameOverride: cray-nls # Ensure this matches any nameOverride used in cray-service
   sqlCluster:
     enabled: true
-    tls:
-      enabled: false
-    waitForItJob: false
+    instanceCount: 3
+    enableLogicalBackup: true
+    # Once per day at 11:10 pm
+    logicalBackupSchedule: "10 23 * * *"
+    volumeSize: 2Gi
     users:
-      argouser: []
+      console: []
     databases:
-      argo: argouser
-    backup:
-      enabled: true
-      # Once per day at 11:10 pm
-      schedule: "10 23 * * *"
+      service_db: argo
 
 # argo workflow
 argo-workflows:
@@ -272,8 +264,8 @@ argo-workflows:
         tableName: argo_workflows
         # the database secrets must be in the same namespace of the controller
         userNameSecret:
-          name: argouser.cray-nls-postgres.credentials
+          name: argo.cray-nls-postgres.credentials
           key: username
         passwordSecret:
-          name: argouser.cray-nls-postgres.credentials
+          name: argo.cray-nls-postgres.credentials
           key: password
