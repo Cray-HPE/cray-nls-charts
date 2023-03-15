@@ -33,10 +33,6 @@ dependencies:
   - name: cray-service
     version: ~8.2.0
     repository: https://artifactory.algol60.net/artifactory/csm-helm-charts
-    alias: cray-service-pg-only
-  - name: cray-service
-    version: ~8.2.0
-    repository: https://artifactory.algol60.net/artifactory/csm-helm-charts
     alias: cray-service
   - name: argo-workflows
     # TODO: point to Alex argo workflow repo
