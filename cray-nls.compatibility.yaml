@@ -1,0 +1,23 @@
+---
+# CSM Version is not really following semver.
+chartVersionToCSMVersion:
+  # Chart version: CSM version
+  ">=2.0.0": "~1.4.0" # Chart Version: 2.0.0 <= x.y.z, CSM Version: 1.4.0 <= x.y.z < 1.5.0
+  ">=3.0.0": ">=1.5.0" # Chart Version: 3.0.0 <= x.y.z < 4.0.0, CSM Version: 1.5.0 <= x.y.z < 1.6.0
+
+# The application version must be compliant to semantic versioning.
+# If the application makes a backwards incompatible change, then its major version needs to be increment.
+# This is the idealized world
+chartVersionToApplicationVersion:
+  # Chart version: Application version
+  "3.0.0": "0.0.1"
+
+# Test results for combinations of Chart, Application, and CSM versions.
+chartValidationLog:
+- chartVersion: 3.0.0
+  applicationVersion: 0.0.1
+  csm: 1.5.0
+  environment: dorain (vshasta)
+  result: PASS
+  tester: bquan-hpe
+  date: 2023-03-28
