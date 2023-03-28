@@ -176,7 +176,7 @@ cray-postgresql:
     users:
       argouser: []
     databases:
-      service_db: argouser
+      argo: argouser
 
 # argo workflow
 argo-workflows:
