@@ -168,7 +168,9 @@ cray-postgresql:
   nameOverride: cray-nls
   sqlCluster:
     enabled: true
-    instanceCount: 3
+    tls:
+      enabled: false
+    waitForItJob: false
     enableLogicalBackup: true
     # Once per day at 11:10 pm
     logicalBackupSchedule: "10 23 * * *"
