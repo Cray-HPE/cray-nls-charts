@@ -104,7 +104,7 @@ cray-service:
       name: "cray-nls"
       image:
         repository: artifactory.algol60.net/csm-docker/stable/cray-nls
-        tag: 0.10.7
+        tag: 0.10.8
       resources:
         limits:
           cpu: 1
@@ -206,7 +206,7 @@ argo-workflows:
       registry: artifactory.algol60.net/csm-docker/stable
       # -- Registry to use for the controller
       repository: quay.io/argoproj/argoexec
-      tag: v3.3.6
+      tag: v3.4.5
   server:
     affinity:
       podAntiAffinity:
@@ -224,7 +224,7 @@ argo-workflows:
       registry: artifactory.algol60.net/csm-docker/stable
       # -- Registry to use for the controller
       repository: quay.io/argoproj/argocli
-      tag: v3.3.6
+      tag: v3.4.5
     pdb:
       enabled: true
       minAvailable: 1
@@ -238,7 +238,7 @@ argo-workflows:
       # -- Registry to use for the controller
       repository: quay.io/argoproj/workflow-controller
       # -- Overrides the image tag whose default is the chart appVersion.
-      tag: v3.3.6
+      tag: v3.4.5
     replicas: 2
     pdb:
       enabled: true
