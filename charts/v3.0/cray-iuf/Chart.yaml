@@ -24,7 +24,7 @@
 
 apiVersion: v2
 name: "cray-iuf"
-version: 3.0.1  # Also update cray-nls version and cray-nls.compatibility.yaml file
+version: 3.0.2  # Also update cray-nls version and cray-nls.compatibility.yaml file
 description: "Kubernetes resources for cray-nls"
 home: "https://github.com/Cray-HPE/cray-nls/charts/v1.0/cray-iuf"
 sources:
