@@ -13,6 +13,7 @@ chartVersionToApplicationVersion:
   "3.0.0": "0.0.1"
   "3.0.1": "0.0.1"
   "3.0.2": "0.0.1"
+  "3.1.0": "0.1.0"
 
 # Test results for combinations of Chart, Application, and CSM versions.
 chartValidationLog:
@@ -30,3 +31,10 @@ chartValidationLog:
   result: PASS
   tester: bquan-hpe
   date: 2023-03-29
+- chartVersion: 3.1.0
+  applicationVersion: 0.1.0
+  csm: 1.5.0
+  environment: dorian (vshasta)
+  result: PASS
+  tester: bquan-hpe
+  date: 2023-05-05
