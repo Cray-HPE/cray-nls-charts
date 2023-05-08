@@ -27,7 +27,7 @@ global:
 metacontroller-helm:
   image:
     repository: artifactory.algol60.net/csm-docker/stable/docker.io/metacontrollerio/metacontroller
-    tag: v4.4.0
+    tag: v4.10.3
   replicas: 2
   commandArgs:
     - --zap-log-level=4

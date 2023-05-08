@@ -24,14 +24,14 @@
 
 apiVersion: v2
 name: "cray-iuf"
-version: 0.0.2
-description: "Kubernetes resources for cray-nls"
-home: "https://github.com/Cray-HPE/cray-nls/charts/v1.0/cray-iuf"
+version: 2.0.0  # Also update cray-nls version and cray-nls.compatibility.yaml file
+description: "Kubernetes resources for cray-iuf"
+home: "https://github.com/Cray-HPE/cray-nls-charts/charts"
 sources:
-  - "https://github.com/Cray-HPE/cray-nls"
+  - "https://github.com/Cray-HPE/cray-nls-charts"
 dependencies:
   - name: metacontroller-helm
-    version: "v4.4.0"
+    version: "v4.10.3"
     repository: "https://artifactory.algol60.net/artifactory/csm-helm-charts"
 maintainers:
   - name: Platform Engineering
