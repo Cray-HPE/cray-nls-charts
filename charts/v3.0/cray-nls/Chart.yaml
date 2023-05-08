@@ -24,11 +24,11 @@
 
 apiVersion: v2
 name: "cray-nls"
-version: 3.0.2  # Also update cray-iuf version and cray-nls.compatibility.yaml file
+version: 3.1.0  # Also update cray-iuf version and cray-nls.compatibility.yaml file
 description: "Kubernetes resources for cray-nls"
 home: "https://github.com/Cray-HPE/cray-nls-charts"
 sources:
-  - "https://github.com/Cray-HPE/cray-nls"
+  - "https://github.com/Cray-HPE/cray-nls-charts"
 dependencies:
   - name: cray-service
     version: ~8.2.0
@@ -45,6 +45,6 @@ dependencies:
 maintainers:
   - name: Platform Engineering
     url: https://github.com/orgs/Cray-HPE/teams/platform-engineering
-appVersion: "0.0.1"
+appVersion: "0.1.0"
 annotations:
   artifacthub.io/license: "MIT"
