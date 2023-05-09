@@ -11,6 +11,7 @@ chartVersionToCSMVersion:
 chartVersionToApplicationVersion:
   # Chart version: Application version
   "2.0.0": "0.0.1"
+  "2.0.1": "0.0.1"
   "3.0.0": "0.0.1"
   "3.0.1": "0.0.1"
   "3.0.2": "0.0.1"
@@ -25,6 +26,13 @@ chartValidationLog:
   result: PASS
   tester: bquan-hpe
   date: 2023-05-08
+- chartVersion: 2.0.1
+  applicationVersion: 0.0.1
+  csm: 1.4.1
+  environment: local
+  result: PASS
+  tester: dzou-hpe
+  date: 2023-05-09
 - chartVersion: 3.0.0
   applicationVersion: 0.0.1
   csm: 1.5.0
