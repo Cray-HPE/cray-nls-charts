@@ -41,7 +41,7 @@ dependencies:
   - name: argo-workflows
     # TODO: point to Alex argo workflow repo
     # When his PR is merged
-    version: "0.16.2"
+    version: "0.22.13"
     repository: https://argoproj.github.io/argo-helm
 maintainers:
   - name: Platform Engineering
