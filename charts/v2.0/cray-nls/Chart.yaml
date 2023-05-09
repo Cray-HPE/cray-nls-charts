@@ -24,7 +24,7 @@
 
 apiVersion: v2
 name: "cray-nls"
-version: 2.0.0  # Also update cray-iuf version and cray-nls.compatibility.yaml file
+version: 2.0.1  # Also update cray-iuf version and cray-nls.compatibility.yaml file
 description: "Kubernetes resources for cray-nls"
 home: "https://github.com/Cray-HPE/cray-nls-charts"
 sources:
@@ -41,7 +41,7 @@ dependencies:
   - name: argo-workflows
     # TODO: point to Alex argo workflow repo
     # When his PR is merged
-    version: "0.16.2"
+    version: "0.22.13"
     repository: https://argoproj.github.io/argo-helm
 maintainers:
   - name: Platform Engineering
