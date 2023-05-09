@@ -10,6 +10,7 @@ chartVersionToCSMVersion:
 # This is the idealized world
 chartVersionToApplicationVersion:
   # Chart version: Application version
+  "2.0.0": "0.0.1"
   "3.0.0": "0.0.1"
   "3.0.1": "0.0.1"
   "3.0.2": "0.0.1"
@@ -17,6 +18,13 @@ chartVersionToApplicationVersion:
 
 # Test results for combinations of Chart, Application, and CSM versions.
 chartValidationLog:
+- chartVersion: 2.0.0
+  applicationVersion: 0.0.1
+  csm: 1.4.1
+  environment: mug
+  result: PASS
+  tester: bquan-hpe
+  date: 2023-05-08
 - chartVersion: 3.0.0
   applicationVersion: 0.0.1
   csm: 1.5.0
