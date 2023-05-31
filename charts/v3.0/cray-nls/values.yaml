@@ -73,8 +73,7 @@ cray-service:
     tls:
       enabled: false
   initContainers:
-    wait-for-argo-server:
-      name: "wait-for-argo-server"
+    - name: wait-for-argo-server
       image:
         repository: artifactory.algol60.net/csm-docker/stable/docker.io/curlimages/curl
         tag: 7.80.0
@@ -83,6 +82,16 @@ cray-service:
         - /bin/sh
         - -c
         - while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' http://argo-server-internal.argo.svc.cluster.local:2746)" != "200" ]]; do echo "Waiting for argo server"; sleep 3;  done; echo "Argo Server is UP";
+    - name: wait-for-nls-postgres
+      image:
+        repository: artifactory.algol60.net/csm-docker/stable/docker-kubectl
+        tag: 1.19.15
+      pullPolicy: IfNotPresent
+      # The postgresql version in the command below needs to be updated, if postgres is upgraded
+      command:
+        - /bin/sh
+        - -c
+        - while [ $(kubectl get postgresql cray-nls-postgres -n argo -o json | jq -r '.status.PostgresClusterStatus') != "Running" ] || [ $(kubectl get postgresql cray-nls-postgres -n argo -o json | jq -r '.spec.postgresql.version') != "14" ]; do echo "Waiting for cray-nls-postgres to be ready"; sleep 5; done; echo "cray-nls-postgres is UP";
 
   containers:
     cray-nls:
@@ -206,6 +215,7 @@ argo-workflows:
       registry: artifactory.algol60.net/csm-docker/stable
       # -- Registry to use for the controller
       repository: quay.io/argoproj/argoexec
+      # When updating argoexec version below, be sure to update the docker index.yaml in csm repo as well
       tag: v3.4.5
   server:
     affinity:

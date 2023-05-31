@@ -210,6 +210,7 @@ argo-workflows:
       registry: artifactory.algol60.net/csm-docker/stable
       # -- Registry to use for the controller
       repository: quay.io/argoproj/argoexec
+      # When updating argoexec version below, be sure to update the docker index.yaml in csm repo as well
       tag: v3.4.5
   server:
     affinity:
