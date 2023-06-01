@@ -58,7 +58,7 @@ chartValidationLog:
   date: 2023-05-05
 - chartVersion: 3.2.0
   csm: 1.5.0
-  environment: 
-  result:
-  tester:
-  date: 
+  environment: dorian (vshasta)
+  result: PASS
+  tester: leliasen-hpe
+  date: 2023-06-01
