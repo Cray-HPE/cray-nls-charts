@@ -56,7 +56,7 @@ chartValidationLog:
   result: PASS
   tester: bquan-hpe
   date: 2023-05-05
-- chartVersion: 3.2.0
+- chartVersion: 3.1.2
   csm: 1.5.0
   environment: dorian (vshasta)
   result: PASS
