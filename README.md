@@ -10,5 +10,5 @@ not possible to change the convention for a previously released product.
 | CSM Version | .version file in cray-nls | Helm chart version in cray-nls-charts |
 |-------------|---------------------------|---------------------------------------|
 | 1.4.x       | 0.(10+x).y                | 2.(10+x).y                            |
-| 1.5.x       | 3.x.y                     | 3.x.y                                 |
+| 1.5.x       | 3.(1+x).y                 | 3.(1+x).y                             |
 | 1.6.x       | 4.x.y                     | 4.x.y                                 |
