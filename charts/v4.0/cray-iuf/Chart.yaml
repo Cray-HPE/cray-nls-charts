@@ -23,29 +23,19 @@
 #
 
 apiVersion: v2
-name: "cray-nls"
-version: 2.11.0  # Also update cray-iuf version and cray-nls.compatibility.yaml file
-description: "Kubernetes resources for cray-nls"
-home: "https://github.com/Cray-HPE/cray-nls-charts"
+name: "cray-iuf"
+version: 4.0.0  # Also update cray-nls version and cray-nls.compatibility.yaml file
+description: "Kubernetes resources for cray-iuf"
+home: "https://github.com/Cray-HPE/cray-nls-charts/charts"
 sources:
-  - "https://github.com/Cray-HPE/cray-nls"
+  - "https://github.com/Cray-HPE/cray-nls-charts"
 dependencies:
-  - name: cray-service
-    version: ~8.2.0
-    repository: https://artifactory.algol60.net/artifactory/csm-helm-charts
-    alias: cray-service-pg-only
-  - name: cray-service
-    version: ~8.2.0
-    repository: https://artifactory.algol60.net/artifactory/csm-helm-charts
-    alias: cray-service
-  - name: argo-workflows
-    # TODO: point to Alex argo workflow repo
-    # When his PR is merged
-    version: "0.22.13"
-    repository: https://argoproj.github.io/argo-helm
+  - name: metacontroller-helm
+    version: "v4.10.3"
+    repository: "https://artifactory.algol60.net/artifactory/csm-helm-charts"
 maintainers:
   - name: Platform Engineering
     url: https://github.com/orgs/Cray-HPE/teams/platform-engineering
-appVersion: "0.0.1"
+appVersion: "0.1.0"
 annotations:
   artifacthub.io/license: "MIT"

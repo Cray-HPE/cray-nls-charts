@@ -1,3 +1,5 @@
+
+   
 #
 # MIT License
 #
@@ -21,31 +23,47 @@
 # ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 # OTHER DEALINGS IN THE SOFTWARE.
 #
-
-apiVersion: v2
-name: "cray-nls"
-version: 2.11.0  # Also update cray-iuf version and cray-nls.compatibility.yaml file
-description: "Kubernetes resources for cray-nls"
-home: "https://github.com/Cray-HPE/cray-nls-charts"
-sources:
-  - "https://github.com/Cray-HPE/cray-nls"
-dependencies:
-  - name: cray-service
-    version: ~8.2.0
-    repository: https://artifactory.algol60.net/artifactory/csm-helm-charts
-    alias: cray-service-pg-only
-  - name: cray-service
-    version: ~8.2.0
-    repository: https://artifactory.algol60.net/artifactory/csm-helm-charts
-    alias: cray-service
-  - name: argo-workflows
-    # TODO: point to Alex argo workflow repo
-    # When his PR is merged
-    version: "0.22.13"
-    repository: https://argoproj.github.io/argo-helm
-maintainers:
-  - name: Platform Engineering
-    url: https://github.com/orgs/Cray-HPE/teams/platform-engineering
-appVersion: "0.0.1"
-annotations:
-  artifacthub.io/license: "MIT"
+{{- if .Values.ingress.enabled -}}
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: cray-argo
+spec:
+  gateways:
+  - services/services-gateway
+  - services/customer-admin-gateway
+  hosts:
+  - argo.{{ .Values.externalHostname }}
+  http:
+  - match:
+    - authority:
+        exact: argo.{{ .Values.externalHostname }}
+    route:
+    - destination:
+        host: cray-nls-argo-workflows-server.argo.svc.cluster.local
+        port:
+          number: 2746
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: cray-iuf
+spec:
+  gateways:
+  - services/services-gateway
+  - services/customer-admin-gateway
+  hosts:
+  - '*'
+  http:
+  - match:
+      - uri:
+          prefix: /apis/iuf
+    rewrite:
+      uri: /apis/iuf
+    route:
+      - destination:
+          host: cray-nls
+          port:
+            number: 80
+{{- end -}}

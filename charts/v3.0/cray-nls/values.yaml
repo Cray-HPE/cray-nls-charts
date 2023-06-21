@@ -104,7 +104,7 @@ cray-service:
       name: "cray-nls"
       image:
         repository: artifactory.algol60.net/csm-docker/stable/cray-nls
-        tag: 0.10.13
+        tag: 3.1.5
       resources:
         limits:
           cpu: 1
@@ -206,7 +206,7 @@ argo-workflows:
       registry: artifactory.algol60.net/csm-docker/stable
       # -- Registry to use for the controller
       repository: quay.io/argoproj/argoexec
-      tag: v3.4.5
+      tag: v3.3.6
   server:
     affinity:
       podAntiAffinity:

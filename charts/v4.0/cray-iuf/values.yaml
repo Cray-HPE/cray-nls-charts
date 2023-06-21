@@ -21,31 +21,28 @@
 # ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 # OTHER DEALINGS IN THE SOFTWARE.
 #
+global:
+  appVersion: 0.1.0
 
-apiVersion: v2
-name: "cray-nls"
-version: 2.11.0  # Also update cray-iuf version and cray-nls.compatibility.yaml file
-description: "Kubernetes resources for cray-nls"
-home: "https://github.com/Cray-HPE/cray-nls-charts"
-sources:
-  - "https://github.com/Cray-HPE/cray-nls"
-dependencies:
-  - name: cray-service
-    version: ~8.2.0
-    repository: https://artifactory.algol60.net/artifactory/csm-helm-charts
-    alias: cray-service-pg-only
-  - name: cray-service
-    version: ~8.2.0
-    repository: https://artifactory.algol60.net/artifactory/csm-helm-charts
-    alias: cray-service
-  - name: argo-workflows
-    # TODO: point to Alex argo workflow repo
-    # When his PR is merged
-    version: "0.22.13"
-    repository: https://argoproj.github.io/argo-helm
-maintainers:
-  - name: Platform Engineering
-    url: https://github.com/orgs/Cray-HPE/teams/platform-engineering
-appVersion: "0.0.1"
-annotations:
-  artifacthub.io/license: "MIT"
+metacontroller-helm:
+  image:
+    repository: artifactory.algol60.net/csm-docker/stable/docker.io/metacontrollerio/metacontroller
+    tag: v4.10.3
+  replicas: 2
+  commandArgs:
+    - --zap-log-level=4
+    - --discovery-interval=20s
+    - --cache-flush-interval=30m
+    - --leader-election
+  podDisruptionBudget:
+    minAvailable: 1
+  affinity:
+    podAntiAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        - topologyKey: kubernetes.io/hostname
+          labelSelector:
+            matchExpressions:
+              - key: app.kubernetes.io/name
+                operator: In
+                values:
+                  - metacontroller-helm
