@@ -232,8 +232,6 @@ argo-workflows:
       - --auth-mode=server
       - --namespaced
   controller:
-    securityContext:
-      runAsNonRoot: false
     image:
       # -- Registry to use for the controller
       registry: artifactory.algol60.net/csm-docker/stable
