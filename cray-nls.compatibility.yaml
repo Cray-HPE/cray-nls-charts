@@ -86,3 +86,9 @@ chartValidationLog:
   result: PASS
   tester: leliasen-hpe
   date: 2023-08-24
+- chartVersion: 4.0.4
+  csm: 1.6.0
+  environment: dorian (vshasta)
+  result: PASS
+  tester: leliasen-hpe
+  date: 2023-08-31
