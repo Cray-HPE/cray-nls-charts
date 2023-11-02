@@ -36,6 +36,7 @@ chartVersionToApplicationVersion:
   "4.0.2": "0.1.0"
   "4.0.3": "0.1.0"
   "4.0.4": "0.1.0"
+  "4.0.5": "0.1.0"
 
 # Test results for combinations of Chart, Application, and CSM versions.
 chartValidationLog:
@@ -92,3 +93,9 @@ chartValidationLog:
   result: PASS
   tester: leliasen-hpe
   date: 2023-08-31
+- chartVersion: 4.0.5
+  csm: 1.6.0
+  environment: mug
+  result: PASS
+  tester: leliasen-hpe
+  date: 2023-11-02
