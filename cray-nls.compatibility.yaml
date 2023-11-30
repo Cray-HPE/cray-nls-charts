@@ -31,12 +31,14 @@ chartVersionToApplicationVersion:
   "3.1.8": "0.1.0"
   "3.1.9": "0.1.0"
   "3.1.10": "0.1.0"
+  "3.1.12": "0.1.0"
   "4.0.0": "0.1.0"
   "4.0.1": "0.1.0"
   "4.0.2": "0.1.0"
   "4.0.3": "0.1.0"
   "4.0.4": "0.1.0"
   "4.0.5": "0.1.0"
+  "4.0.7": "0.1.0"
 
 # Test results for combinations of Chart, Application, and CSM versions.
 chartValidationLog:
