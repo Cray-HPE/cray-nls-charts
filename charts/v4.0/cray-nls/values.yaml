@@ -107,7 +107,7 @@ cray-service:
       name: "cray-nls"
       image:
         repository: artifactory.algol60.net/csm-docker/stable/cray-nls
-        tag: 4.0.13
+        tag: 4.1.0-1
       resources:
         limits:
           cpu: 1
@@ -276,3 +276,10 @@ argo-workflows:
         passwordSecret:
           name: argouser.cray-nls-postgres.credentials
           key: password
+
+# used for crd hook
+kubectl:
+  image:
+    repository: artifactory.algol60.net/csm-docker/stable/docker-kubectl
+    tag: 1.24.17
+    pullPolicy: IfNotPresent
