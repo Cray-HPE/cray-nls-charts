@@ -59,5 +59,8 @@ spec:
             - '/bin/sh'
           args:
             - "-c"
-            - kubectl delete crd hooks.cray-nls.hpe.com
-            - kubectl create -f /tmp/nls
+            - |
+               if kubectl get crd hooks.cray-nls.hpe.com; then
+                 kubectl delete crd hooks.cray-nls.hpe.com
+               fi
+               kubectl create -f /tmp/nls
