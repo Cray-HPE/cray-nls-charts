@@ -43,10 +43,7 @@ rules:
   - customresourcedefinitions
   verbs:
   - create
-  - get
-  - list
-  - patch
-  - update
+  - delete
 ---
 ## Bind the role to the operator
 ## service account
