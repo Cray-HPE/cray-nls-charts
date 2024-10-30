@@ -231,21 +231,21 @@ argo-workflows:
     initContainers:
       wait-for-postgresql:
         name: "wait-for-postgresql"
-        image: "{{ .Values.kubectl.image.repository }}:{{ .Values.kubectl.image.tag }}"
-        imagePullPolicy: {{ .Values.kubectl.image.pullPolicy }}
+        image: "{{ .kubectl.image.repository }}:{{ .kubectl.image.tag }}"
+        imagePullPolicy: {{ .kubectl.image.pullPolicy }}
         command:
           - /bin/sh
           - -c
           - |
             while true; do
-              JOB_CONDITION="$(kubectl get jobs -n {{ .Release.Namespace | default .Values.defaultNamespace }} -l app.kubernetes.io/name={{ .Values.cray-postgresql.nameOverride }}-wait-for-postgres -o jsonpath='{.items[0].status.conditions[0].type}')"
+              JOB_CONDITION="$(kubectl get jobs -n {{ .Release.Namespace | default .Values.defaultNamespace }} -l app.kubernetes.io/name={{ .cray-postgresql.nameOverride }}-wait-for-postgres -o jsonpath='{.items[0].status.conditions[0].type}')"
               JOB_CONDITION_RC=$?
               if [ $JOB_CONDITION_RC -eq 0 ]; then
                 if [ "$JOB_CONDITION" == 'Complete' ]; then
                   echo "Completed"
                   break
                 fi
-                echo "Waiting for the {{ index .Values "cray-etcd-base" "nameOverride" }}-wait-for-etcd job in the {{ .Release.Namespace | default .Values.defaultNamespace }} namespace to complete, current condition is $(kubectl get jobs -n {{ .Release.Namespace | default .Values.defaultNamespace }} -l app.kubernetes.io/name={{ .Values.cray-postgresql.nameOverride }}-wait-for-postgres -o jsonpath='{.items[0].status}')"
+                echo "Waiting for the {{ index .Values "cray-etcd-base" "nameOverride" }}-wait-for-etcd job in the {{ .Release.Namespace | default .Values.defaultNamespace }} namespace to complete, current condition is $(kubectl get jobs -n {{ .Release.Namespace | default .defaultNamespace }} -l app.kubernetes.io/name={{ .Values.cray-postgresql.nameOverride }}-wait-for-postgres -o jsonpath='{.items[0].status}')"
                 sleep 3
               elif [ $JOB_CONDITION_RC -ne 1 ]; then
                 echo "'kubectl get jobs' failed with exit code $JOB_CONDITION_RC , failing"
