@@ -231,7 +231,7 @@ argo-workflows:
     initContainers:
       wait-for-postgresql:
         name: "wait-for-postgresql"
-        image: "{{ .kubectl.image.repository }}:{{ .kubectl.image.tag }}"
+        image: "{{ kubectl.image.repository }}:{{ kubectl.image.tag }}"
         imagePullPolicy: {{ .kubectl.image.pullPolicy }}
         command:
           - /bin/sh
