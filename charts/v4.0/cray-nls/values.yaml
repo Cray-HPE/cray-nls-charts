@@ -31,6 +31,13 @@ ingress:
 
 externalHostname: argo.local
 
+# used for crd hook
+kubectl:
+  image:
+    repository: artifactory.algol60.net/csm-docker/stable/docker-kubectl
+    tag: 1.24.17
+    pullPolicy: IfNotPresent
+
 cray-service:
   type: "Deployment"
   nameOverride: "cray-nls"
@@ -231,8 +238,8 @@ argo-workflows:
     initContainers:
       wait-for-postgresql:
         name: "wait-for-postgresql"
-        image: "{{ kubectl.image.repository }}:{{ kubectl.image.tag }}"
-        imagePullPolicy: {{ kubectl.image.pullPolicy }}
+        image: "{{ .Values.kubectl.image.repository }}:{{ .Values.kubectl.image.tag }}"
+        imagePullPolicy: {{ .Values.kubectl.image.pullPolicy }}
         command:
           - /bin/sh
           - -c
@@ -245,7 +252,7 @@ argo-workflows:
                   echo "Completed"
                   break
                 fi
-                echo "Waiting for the {{ index .Values "cray-etcd-base" "nameOverride" }}-wait-for-etcd job in the {{ .Release.Namespace }} namespace to complete, current condition is $(kubectl get jobs -n {{ .Release.Namespace }} -l app.kubernetes.io/name={{ cray-postgresql.nameOverride }}-wait-for-postgres -o jsonpath='{.items[0].status}')"
+                echo "Waiting for the {{ index .Values "cray-etcd-base" "nameOverride" }}-wait-for-etcd job in the {{ .Release.Namespace }} namespace to complete, current condition is $(kubectl get jobs -n {{ .Release.Namespace }} -l app.kubernetes.io/name={{ .Values.cray-postgresql.nameOverride }}-wait-for-postgres -o jsonpath='{.items[0].status}')"
                 sleep 3
               elif [ $JOB_CONDITION_RC -ne 1 ]; then
                 echo "'kubectl get jobs' failed with exit code $JOB_CONDITION_RC , failing"
@@ -308,9 +315,3 @@ argo-workflows:
           name: argouser.cray-nls-postgres.credentials
           key: password
 
-# used for crd hook
-kubectl:
-  image:
-    repository: artifactory.algol60.net/csm-docker/stable/docker-kubectl
-    tag: 1.24.17
-    pullPolicy: IfNotPresent
