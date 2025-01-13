@@ -23,7 +23,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 */}}
 
 ---
-apiVersion: policy/v1beta1
+apiVersion: policy/v1
 kind: PodDisruptionBudget
 metadata:
   name: pdb-cray-cls
