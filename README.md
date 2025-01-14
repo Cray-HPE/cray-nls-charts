@@ -12,6 +12,7 @@ not possible to change the convention for a previously released product.
 | 1.4.x       | 0.(10+x).y                | 2.(10+x).y                            |
 | 1.5.x       | 3.(1+x).y                 | 3.(1+x).y                             |
 | 1.6.x       | 4.x.y                     | 4.x.y                                 |
+| 1.7.x       | 5.x.y                     | 5.x.y                                 |
 
 PLEASE FOLLOW SEMANTIC VERSIONING GUIDELINES FROM CSM VERSION.
 
