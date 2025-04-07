@@ -115,3 +115,9 @@ chartValidationLog:
   result: PASS
   tester: leliasen-hpe
   date: 2023-11-02
+- chartVersion: 5.0.1
+  csm: 1.7.0
+  environment: wasp
+  result: PASS
+  tester: Srinivas-Anand-HPE
+  date: 2025-03-17
