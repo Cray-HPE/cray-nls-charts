@@ -20,6 +20,7 @@ charts/v3.0/cray-nls/charts
 charts/v3.0/cray-nls/Chart.lock
 charts/v3.0/cray-iuf/charts/metacontroller-helm-v4.4.0.tgz
 charts/v3.0/cray-iuf/charts/metacontroller-helm-v4.10.3.tgz
+charts/v3.0/cray-iuf/charts/metacontroller-helm-v4.11.25.tgz
 charts/v3.0/cray-iuf/Chart.lock
 charts/v3.0/cray-iuf/.DS_Store
 charts/v3.0/cray-iuf/charts/
