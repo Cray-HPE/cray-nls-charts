@@ -31,7 +31,7 @@ sources:
   - "https://github.com/Cray-HPE/cray-nls-charts"
 dependencies:
   - name: metacontroller-helm
-    version: "v4.10.3"
+    version: "v4.11.25"
     repository: "https://artifactory.algol60.net/artifactory/csm-helm-charts"
 maintainers:
   - name: Platform Engineering
