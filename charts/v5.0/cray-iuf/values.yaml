@@ -26,7 +26,7 @@ global:
 
 metacontroller-helm:
   image:
-    repository: artifactory.algol60.net/csm-docker/stable/docker.io/metacontrollerio/metacontroller
+    repository: artifactory.algol60.net/csm-docker/stable/ghcr.io/metacontroller/metacontroller
     tag: v4.11.25
   replicas: 2
   commandArgs:
