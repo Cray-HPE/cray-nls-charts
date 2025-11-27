@@ -57,6 +57,7 @@ chartVersionToApplicationVersion:
   "5.1.1": "0.1.0"
   "5.1.2": "0.1.0"
   "5.1.3": "0.1.0"
+  "5.1.4": "0.1.0"
 
 # Test results for combinations of Chart, Application, and CSM versions.
 chartValidationLog:
@@ -131,3 +132,9 @@ chartValidationLog:
   result: PASS
   tester: sajeeshkv-hpe
   date: 2025-11-24
+- chartVersion: 5.1.4
+  csm: 1.7.1
+  environment: drax
+  result: PASS
+  tester: Pankhuri-Rajesh
+  date: 2025-11-27
