@@ -126,6 +126,24 @@ chartValidationLog:
   result: PASS
   tester: Srinivas-Anand-HPE
   date: 2025-03-17
+- chartVersion: 5.1.0
+  csm: 1.7.0
+  environment: beau
+  result: PASS
+  tester: leliasen-hpe
+  date: 2025-05-06
+- chartVersion: 5.1.1
+  csm: 1.7.0
+  environment: starlord
+  result: PASS
+  tester: Pankhuri-Rajesh
+  date: 2025-07-11
+- chartVersion: 5.1.2
+  csm: 1.7.0
+  environment: wasp
+  result: PASS
+  tester: Pankhuri-Rajesh
+  date: 2025-07-26
 - chartVersion: 5.1.3
   csm: 1.7.0
   environment: mug
